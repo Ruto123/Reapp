@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conserving and Recycling Plastics</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <ul class="menu">
+            <li><a href="index.html">#</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#methods">Methods</a></li>
+            <li><a href="#recycle">Recycle</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <header>
+        <h1>Conserving and Recycling Plastics</h1>
+    </header>
+    <section id="about">
+        <h2>About</h2>
+        <p>Information about the importance of conserving and recycling plastics.</p>
+       <p>Environmental Conservation: Plastics take hundreds to thousands of years to decompose naturally. Improper disposal of plastics leads to pollution of land, water bodies, and air, endangering wildlife and ecosystems. By conserving and recycling plastics, we reduce the amount of plastic waste that ends up in our environment.</p>
+        <p></p>
+       <div class="photo-container">
+            <img src="images/pexels-anna-tarazevich-7772006.jpg" alt="About Photo 1">
+            <img src="images/pexels-levent-simsek-3616656.jpg" alt="About Photo 2">
+        </div>
+    </section>
+    <section id="methods">
+        <h2>Methods</h2>
+        <p>Various methods and techniques for conserving and recycling plastics.</p>
+        <div class="photo-container">
+            <img src="images/pexels-shivam-tyagi-3305852.jpg" alt="Methods Photo 1">
+            <img src="images/pexels-anna-tarazevich-7772006.jpg" alt="Methods Photo 2">
+        </div>
+    </section>
+    <section id="recycle">
+        <h2>Recycle Plastic</h2>
+        <p>Learn how to recycle plastic responsibly and effectively.</p>
+        <div class="photo-container">
+            <img src="recycle_photo1.jpg" alt="Recycle Photo 1">
+            <img src="recycle_photo2.jpg" alt="Recycle Photo 2">
+        </div>
+        <form id="recycleForm">
+            <label for="amount">Amount of Plastic (in kg):</label>
+            <input type="number" id="amount" name="amount" step="0.01" required>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="voucherResult" style="display: none;">
+            <h3>Shopping Voucher</h3>
+            <p>Your shopping voucher code is: <span id="voucherCode"></span></p>
+            <p>Voucher Amount: $<span id="voucherAmount"></span></p>
+            <button onclick="printVoucher()">Print</button>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2024 Conserving and Recycling Plastics</p>
+    </footer>
+
+    <script>
+        document.getElementById('recycleForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const amount = parseFloat(document.getElementById('amount').value);
+            const voucherResult = document.getElementById('voucherResult');
+            const voucherCodeElement = document.getElementById('voucherCode');
+            const voucherAmountElement = document.getElementById('voucherAmount');
+            
+            // Simulate backend voucher generation
+            const voucherCode = generateVoucherCode();
+            const voucherAmount = calculateVoucherAmount(amount);
+            
+            // Display the voucher information
+            voucherCodeElement.textContent = voucherCode;
+            voucherAmountElement.textContent = voucherAmount.toFixed(2);
+            voucherResult.style.display = 'block';
+        });
+
+        // Helper function to calculate voucher amount
+        function calculateVoucherAmount(amount) {
+            // You can define your own logic here to calculate the voucher amount based on the amount of plastic recycled
+            return amount * 0.05; // Example: $0.05 per kg of plastic recycled
+        }
+
+        // Helper function to generate voucher code
+        function generateVoucherCode() {
+            // Generate a random alphanumeric voucher code
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let voucherCode = '';
+            for (let i = 0; i < 8; i++) {
+                voucherCode += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            return voucherCode;
+        }
+
+        // Function to print the voucher
+        function printVoucher() {
+            var printContents = document.getElementById('voucherResult').innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+        }
+        
+    </script>
+</body>
+</html>
